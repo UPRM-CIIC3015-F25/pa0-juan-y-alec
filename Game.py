@@ -94,8 +94,7 @@ start = False  # Indicates if the game has started
 # Main game loop
 while True:
     # Event handling
-    # TODO Task 4: Add your name
-    name = "John Doe"
+    name = "Alec Rodríguez"
     for event in pygame.event.get():
         if event.type == pygame.QUIT:  # Quit the game
             pygame.quit()
@@ -131,4 +130,4 @@ while True:
     pygame.display.flip()
     clock.tick(60)  # Maintain 60 frames per second
 
-#adaudjidh
+    #probando
