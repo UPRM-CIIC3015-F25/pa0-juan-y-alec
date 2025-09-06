@@ -26,6 +26,8 @@ def ball_movement():
             score = score + 1  # Increase player score by 1
             ball_speed_y *= -1  # Reverse ball's vertical direction
             # TODO Task 6: Add sound effects HERE
+            rebound = pygame.mixer.Sound("sounds/tennisball.wav")
+            rebound.play()
 
     # Ball collision with top boundary
     if ball.top <= 0:
