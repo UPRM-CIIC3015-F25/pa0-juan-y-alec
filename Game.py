@@ -1,4 +1,5 @@
 import pygame, sys, random
+from pygame import mixer
 #test change
 def ball_movement():
     """
@@ -14,7 +15,7 @@ def ball_movement():
     # TODO Task 5 Create a Merge Conflict
     speed = 8
     if start: #Make it so the ball only changes direct when hitting space at the start,currently player can hit space and change the ball midair
-        ball_speed_x = speed * random.choice((1, -1))  # Randomize initial horizontal direction
+        ball_speed_x = speed * random.choice((1, -1))  #  Randomize initial horizontal direction
         ball_speed_y = speed * random.choice((1, -1))  # Randomize initial vertical direction
         start = False
 
@@ -63,6 +64,12 @@ def restart():
 pygame.mixer.pre_init(44100, -16, 1, 1024)
 pygame.init()
 clock = pygame.time.Clock()
+
+#BONO Background music
+mixer.music.load("sounds/Backgroundmusic.mp3") # Loads the music
+mixer.music.play() # Starts the music
+mixer.music.set_volume(0.08) # Music volume
+mixer.music.play(-1) # Plays music infinitely
 
 # Main Window setup
 screen_width = 500  # Screen width (can be adjusted)
