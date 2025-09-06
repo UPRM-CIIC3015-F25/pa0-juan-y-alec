@@ -32,10 +32,14 @@ def ball_movement():
     # Ball collision with top boundary
     if ball.top <= 0:
         ball_speed_y *= -1  # Reverse ball's vertical direction
+        rebound = pygame.mixer.Sound("sounds/tennisball.wav")
+        rebound.play()
 
     # Ball collision with left and right boundaries
     if ball.left <= 0 or ball.right >= screen_width:
         ball_speed_x *= -1
+        rebound = pygame.mixer.Sound("sounds/tennisball.wav")
+        rebound.play()
 
     # Ball goes below the bottom boundary (missed by player)
     if ball.bottom > screen_height:
