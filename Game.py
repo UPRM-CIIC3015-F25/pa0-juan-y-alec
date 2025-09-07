@@ -1,6 +1,6 @@
 import pygame, sys, random
 from pygame import mixer
-#test change
+
 def ball_movement():
     """
     Handles the movement of the ball and collision detection with the player and screen boundaries.
@@ -14,8 +14,8 @@ def ball_movement():
     # Start the ball movement when the game begins
     # TODO Task 5 Create a Merge Conflict
     speed = 8
-    if start: #Make it so the ball only changes direct when hitting space at the start,currently player can hit space and change the ball midair
-        ball_speed_x = speed * random.choice((1, -1))  #  Randomize initial horizontal direction
+    if start:  # Make it so the ball only changes direct when hitting space at the start,currently player can hit space and change the ball midair
+        ball_speed_x = speed * random.choice((1, -1))  # Randomize initial horizontal direction
         ball_speed_y = speed * random.choice((1, -1))  # Randomize initial vertical direction
         start = False
         global start_condition
@@ -28,9 +28,10 @@ def ball_movement():
             score = score + 1  # Increase player score by 1
             ball_speed_y *= -1  # Reverse ball's vertical direction
             # TODO Task 6: Add sound effects HERE
+            # Collision Sound
             rebound = pygame.mixer.Sound("sounds/tennisball.wav")
             rebound.play()
-            #Point increase sound
+            # Point increase sound
             collect_point = pygame.mixer.Sound("sounds/collect_point.wav")
             collect_point.set_volume(0.5)
             collect_point.play()
@@ -49,6 +50,8 @@ def ball_movement():
 
     # Ball goes below the bottom boundary (missed by player)
     if ball.bottom > screen_height:
+        lose_sound = pygame.mixer.Sound("sounds/lose.wav")
+        lose_sound.play()
         restart()  # Reset the game
 
 def player_movement():
@@ -74,16 +77,16 @@ def restart():
     global start_condition
     start_condition = False
 
-# General setup
-pygame.mixer.pre_init(44100, -16, 1, 1024)
+# General Setup
 pygame.init()
+pygame.mixer.pre_init(44100, -16, 1, 1024)
 clock = pygame.time.Clock()
 
-#BONO Background music
-mixer.music.load("sounds/Backgroundmusic.mp3") # Loads the music
-mixer.music.play() # Starts the music
-mixer.music.set_volume(0.08) # Music volume
-mixer.music.play(-1) # Plays music infinitely
+# BONO Background music
+mixer.music.load("sounds/Backgroundmusic.mp3")  # Loads the music
+mixer.music.play()  # Starts the music
+mixer.music.set_volume(0.08)  # Music volume
+mixer.music.play(-1)  # Plays music infinitely
 
 # Main Window setup
 screen_width = 500  # Screen width (can be adjusted)
@@ -99,7 +102,7 @@ ball = pygame.Rect(screen_width / 2 - 15, screen_height / 2 - 15, 30, 30)  # Bal
 # TODO Task 1 Make the paddle bigger
 player_height = 15
 player_width = 200
-player = pygame.Rect(screen_width/2 - 45, screen_height - 20, player_width, player_height)  # Player paddle
+player = pygame.Rect(screen_width / 2 - 45, screen_height - 20, player_width, player_height)  # Player paddle
 
 # Game Variables
 ball_speed_x = 0
@@ -143,10 +146,11 @@ while True:
     teal = pygame.Color('teal')
     screen.fill(bg_color)  # Clear screen with background color
     pygame.draw.rect(screen, light_grey, player)  # Draw player paddle
+
     # TODO Task 3: Change the Ball Color
     pygame.draw.ellipse(screen, teal, ball)  # Draw ball
     player_text = basic_font.render(f'{score}', False, light_grey)  # Render player score
-    screen.blit(player_text, (screen_width/2 - 15, 10))  # Display score on screen
+    screen.blit(player_text, (screen_width / 2 - 15, 10))  # Display score on screen
 
     # Update display
     pygame.display.flip()
