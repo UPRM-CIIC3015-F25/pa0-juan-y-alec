@@ -18,6 +18,8 @@ def ball_movement():
         ball_speed_x = speed * random.choice((1, -1))  #  Randomize initial horizontal direction
         ball_speed_y = speed * random.choice((1, -1))  # Randomize initial vertical direction
         start = False
+        global start_condition
+        start_condition = True
 
     # Ball collision with the player paddle
     if ball.colliderect(player):
@@ -65,6 +67,8 @@ def restart():
     ball.center = (screen_width / 2, screen_height / 2)  # Reset ball position to center
     ball_speed_y, ball_speed_x = 0, 0  # Stop ball movement
     score = 0  # Reset player score
+    global start_condition
+    start_condition = False
 
 # General setup
 pygame.mixer.pre_init(44100, -16, 1, 1024)
@@ -103,6 +107,7 @@ score = 0
 basic_font = pygame.font.Font('freesansbold.ttf', 32)  # Font for displaying score
 
 start = False  # Indicates if the game has started
+start_condition = False
 
 # Main game loop
 while True:
@@ -117,7 +122,7 @@ while True:
                 player_speed -= 6  # Move paddle left
             if event.key == pygame.K_RIGHT:
                 player_speed += 6  # Move paddle right
-            if event.key == pygame.K_SPACE:
+            if start_condition == False and event.key == pygame.K_SPACE:
                 start = True  # Start the ball movement
         if event.type == pygame.KEYUP:
             if event.key == pygame.K_LEFT:
