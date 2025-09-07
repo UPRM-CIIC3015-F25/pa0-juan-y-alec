@@ -30,6 +30,10 @@ def ball_movement():
             # TODO Task 6: Add sound effects HERE
             rebound = pygame.mixer.Sound("sounds/tennisball.wav")
             rebound.play()
+            #Point increase sound
+            collect_point = pygame.mixer.Sound("sounds/collect_point.wav")
+            collect_point.set_volume(0.5)
+            collect_point.play()
 
     # Ball collision with top boundary
     if ball.top <= 0:
