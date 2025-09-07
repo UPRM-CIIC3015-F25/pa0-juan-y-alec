@@ -52,6 +52,14 @@ def ball_movement():
     if ball.bottom > screen_height:
         lose_sound = pygame.mixer.Sound("sounds/lose.wav")
         lose_sound.play()
+
+    # Game Over sound effect
+        mixer.music.set_volume(0) # Stops background music temporarily
+        game_over_sound = pygame.mixer.Sound("sounds/Gameover.wav")
+        game_over_sound.set_volume(0.2)
+        game_over_sound.play() # Plays Game Over sound effect
+        pygame.time.delay(3000) # Stops the game for 3 seconds while the sound plays
+        mixer.music.set_volume(0.1) # Plays the background music again
         restart()  # Reset the game
 
 def player_movement():
@@ -85,7 +93,7 @@ clock = pygame.time.Clock()
 # BONO Background music
 mixer.music.load("sounds/Backgroundmusic.mp3")  # Loads the music
 mixer.music.play()  # Starts the music
-mixer.music.set_volume(0.08)  # Music volume
+mixer.music.set_volume(0.1)  # Music volume
 mixer.music.play(-1)  # Plays music infinitely
 
 # Main Window setup
